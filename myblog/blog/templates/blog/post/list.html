@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Бложе мой!{% endblock %}
+
+{% block content %}
+  <h1>Бложе мой!</h1>
+  {% for post in posts %}
+    <h2>
+      <a href="{% url 'blog:post_detail' post.id %}">
+        {{ post.title }}
+      </a>
+    </h2>
+    <p class="date">
+      Опубликовано: {{ post.publish.date }} автор: {{ post.author.username }}
+    </p>
+    {{ post.body|truncatewords:30|linebreaks }}
+  {% endfor %}
+
+{% endblock %}
