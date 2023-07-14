@@ -9,7 +9,7 @@
   </p>
   {{ post.body|linebreaks }}
   <p>
-    <a href="{% url 'blog:post_list' %}">
+    <a href="{% url 'blog:post_list' %}?page={{ request.session.page_number|default_if_none:'1' }}">
       <- вернутся к списку постов
     </a>
   </p>
