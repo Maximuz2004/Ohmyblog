@@ -10,8 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_pe&+&h=cr%i@!w#3_xezq^0_tkd_nkj!5vq@am_$%28=)=)k%'
+SECRET_KEY = os.getenv('SECRET_KEY',
+                       default='django-insecure-_pe&+&h=cr%i@!w#3_xezq^0_tkd_nkj!5vq@am_$%28=)=)k%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,6 +77,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myblog.wsgi.application'
 
+# Конфигурация сервера электронной почты
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
