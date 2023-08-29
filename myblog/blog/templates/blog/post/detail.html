@@ -18,6 +18,16 @@
       (づ｡◕‿‿◕｡)づ поделиться этим постом по почте
     </a>
   </p>
+  {% if similar_posts %}
+    <h2>Похожие посты</h2>
+    {% for post in similar_posts %}
+      <p>
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+      </p>
+    {% endfor %}
+  {% else %}
+    <h2>Похожих постов нет</h2>
+  {% endif %}
   {% with comments.count as total_comments %}
    <p>
      Комментариев: {{ total_comments }}
