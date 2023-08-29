@@ -39,13 +39,14 @@ def post_list(request, tag_slug=None):
 
 
 def post_detail(request, year, month, day, post):
+    print(year, month, day, post)
     post = get_object_or_404(
         Post,
         status=Post.Status.PUBLISHED,
         slug=post,
         publish__year=year,
         publish__month=month,
-        publish__day=day
+        publish__day=day,
     )
     comments = post.comments.filter(active=True)
     form = CommentForm()
