@@ -32,6 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 
 # Application definition
 
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -131,7 +134,8 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False # если True, то Джанго использует время UTC вместо Московского времени. и время на 3 часа меньше Московского
+USE_TZ = False  # если True, то Джанго использует время UTC вместо Московского
+                # времени и время на 3 часа меньше Московского. Непонятно почему(
 
 
 # Static files (CSS, JavaScript, Images)
