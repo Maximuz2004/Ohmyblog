@@ -1,25 +1,16 @@
 from django.conf import settings
-from django.contrib.postgres.search import (SearchVector,
-                                            SearchQuery, SearchRank,
-                                            TrigramSimilarity)
+from django.contrib.postgres.search import TrigramSimilarity
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Count
 from django.views.decorators.http import require_POST
-from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, render
 
 from taggit.models import Tag
 
 from .forms import CommentForm, EmailPostForm, SearchForm
-from .models import Comment, Post
+from .models import Post
 
-
-# class PostListView(ListView):
-#     queryset = Post.published.all()
-#     context_object_name = 'posts'
-#     paginate_by = 3
-#     template_name = 'blog/post/list.html'
 
 def post_list(request, tag_slug=None):
     post_list = Post.published.all()
@@ -70,6 +61,7 @@ def post_detail(request, year, month, day, post):
         }
     )
 
+
 def post_share(request, post_id):
     post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
     sent = False
@@ -89,6 +81,7 @@ def post_share(request, post_id):
                                                     'form': form,
                                                     'sent': sent})
 
+
 @require_POST
 def post_comment(request, post_id):
     post = get_object_or_404(Post,
@@ -105,6 +98,7 @@ def post_comment(request, post_id):
                        'form': form,
                        'comment': comment}
                       )
+
 
 def post_search(request):
     form = SearchForm()

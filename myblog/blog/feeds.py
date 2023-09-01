@@ -5,6 +5,7 @@ import markdown
 
 from .models import Post
 
+
 class LatestPostsFeed(Feed):
     title = 'ohmyblog'
     link = reverse_lazy('blog:post_list')

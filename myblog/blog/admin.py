@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import Comment, Post
 
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = (
@@ -19,6 +20,7 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'
     list_filter = ('author', 'status', 'created', 'publish')
     empty_value_display = '--пусто--'
+
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):

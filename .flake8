@@ -1,0 +1,14 @@
+[flake8]
+ignore = D100
+disable-noqa = True
+paths =
+    ./myblog
+max-complexity = 10
+max-line-length = 79
+exclude =
+    venv/
+    tests/
+  ./myblog/myblog/settings.py
+  ./myblog/myblog/middlewares.py
+  ./myblog/blog/migrations
+  __init__.py
